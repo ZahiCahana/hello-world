@@ -41,6 +41,14 @@ pipeline {
                 sh "echo 'hi demo class'"
             }
         }
+        
+        stage('BlackDuck_Scan') {
+            steps {
+
+                synopsys_detect '--blackduck.trust.cert=true --detect.project.name=test_github --detect.project.version.name=1 --detect.cleanup=true --detect.source.path=${WORKSPACE}  --detect.excluded.detector.types=NUGET '
+          
+            }
+        }
        
     }
     post {
